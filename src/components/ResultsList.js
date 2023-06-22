@@ -18,7 +18,23 @@ const ResultsList = ({ results }) => {
 	return (
 		<>
 			{singleCountryData && (
-				<div>{JSON.stringify(singleCountryData, null, 2)}</div>
+				<div>
+					<h2>{singleCountryData.name.common}</h2>
+					<p>Capital: {singleCountryData.capital[0]}</p>
+					<p>Area: {singleCountryData.area}</p>
+					<p>Languages:</p>
+					<ul>
+						{Object.values(singleCountryData.languages).map(
+							(language) => (
+								<li key={language}>{language}</li>
+							)
+						)}
+					</ul>
+					<img
+						src={Object.values(singleCountryData.flags)[0]}
+						alt={`${singleCountryData.name.common} Flag`}
+					/>
+				</div>
 			)}
 			{results.length > 1 && results.length < 11 && (
 				<ul style={{ listStyle: 'none' }}>
