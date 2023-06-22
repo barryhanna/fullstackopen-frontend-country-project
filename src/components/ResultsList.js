@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Weather from './Weather';
 
 const ResultsList = ({ results, setSearchTerm }) => {
 	const [singleCountryData, setSingleCountryData] = useState('');
@@ -33,6 +34,11 @@ const ResultsList = ({ results, setSearchTerm }) => {
 					<img
 						src={Object.values(singleCountryData.flags)[0]}
 						alt={`${singleCountryData.name.common} Flag`}
+					/>
+					<Weather
+						city={singleCountryData.capital[0]}
+						lat={singleCountryData.latlng[0]}
+						lon={singleCountryData.latlng[1]}
 					/>
 				</div>
 			)}
