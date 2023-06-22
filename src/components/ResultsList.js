@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ResultsList = ({ results }) => {
+const ResultsList = ({ results, setSearchTerm }) => {
 	const [singleCountryData, setSingleCountryData] = useState('');
 
 	useEffect(() => {
@@ -39,7 +39,12 @@ const ResultsList = ({ results }) => {
 			{results.length > 1 && results.length < 11 && (
 				<ul style={{ listStyle: 'none' }}>
 					{results.map((country) => (
-						<li key={country}>{country}</li>
+						<li key={country}>
+							{country}{' '}
+							<button onClick={() => setSearchTerm(country)}>
+								Show
+							</button>
+						</li>
 					))}
 				</ul>
 			)}

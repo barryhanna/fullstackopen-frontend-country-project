@@ -31,7 +31,7 @@ function App() {
 					onChange={(e) => setSearchTerm(e.target.value)}
 				/>
 			</p>
-			<ResultsList results={filtered} />
+			<ResultsList results={filtered} setSearchTerm={setSearchTerm} />
 		</div>
 	);
 }
