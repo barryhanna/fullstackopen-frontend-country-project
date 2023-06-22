@@ -1,9 +1,9 @@
 import React from 'react';
 import { API_KEY } from '../data/secrets.js';
 
-const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=${API_KEY}`;
+const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=metric&appid=${API_KEY}`;
 
-const Weather = ({ cityName, lat, lon }) => {
+const Weather = ({ city, lat, lon }) => {
 	const [weather, setWeather] = React.useState({});
 
 	React.useEffect(() => {
@@ -19,10 +19,17 @@ const Weather = ({ cityName, lat, lon }) => {
 			});
 	}, [lat, lon]);
 
+	console.log(weather);
+
 	return (
 		<>
-			<h3>Weather in {cityName}</h3>
-			<pre>{JSON.stringify(weather, null, 2)}</pre>
+			<h3>Weather in {city}</h3>
+			<p>Temp: {weather?.main?.temp}&deg;C</p>
+			<img
+				src={`http://openweathermap.org/img/w/${weather?.weather[0]?.icon}.png`}
+				alt=""
+			/>
+			<p>Wind: {weather?.wind?.speed} m/s</p>
 		</>
 	);
 };
